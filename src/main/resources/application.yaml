@@ -1,0 +1,27 @@
+server:
+  port: 8091
+spring:
+  basePackage: app
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    jdbc-url: jdbc:postgresql://localhost:5432/test
+    driverClassName: org.postgresql.Driver
+    username: postgres
+    password: root
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+  application:
+    name: November2020
+hibernate:
+  properties:
+    dialect: org.hibernate.dialect.PostgreSQL95Dialect
+    showSQL: true
+    formatSQL: true
+    basePackage: app
+  jdbc:
+    lob:
+      non_contextual_creation: true

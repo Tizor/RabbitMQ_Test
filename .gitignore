@@ -1,0 +1,37 @@
+.idea/*
+=======
+.gradle
+
+build
+out
+
+
+!gradle/wrapper/gradle-wrapper.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+November2020/gradle
+November2020/build
+November2020/out
+November2020/settings.gradle
