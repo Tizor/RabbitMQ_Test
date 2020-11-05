@@ -31,8 +31,7 @@ dependencies {
 
     compile group: 'org.springframework.amqp', name: 'spring-rabbit', version: '2.2.11.RELEASE'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.11.2'
-
-
+    compile group: 'log4j', name: 'log4j', version: '1.2.17'
 
     //All dependencies for Java 8 -> Java 11
     // replacements for deprecated JDK module java.xml.ws
