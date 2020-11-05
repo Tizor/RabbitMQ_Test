@@ -9,4 +9,5 @@ public interface UserService {
     User getUserById(Long id);
     void sendStringMessage(String message);
     void sendUserMessage(User user);
+    void changeUserMessageFromFirstQueue(User user);
 }

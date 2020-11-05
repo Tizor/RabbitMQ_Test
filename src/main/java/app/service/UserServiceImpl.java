@@ -27,11 +27,18 @@ public class UserServiceImpl implements UserService {
     }
 
     public void sendStringMessage(String message){
-        rabbitTemplate.convertAndSend("TestQueue", message.getBytes());
+        rabbitTemplate.convertAndSend("FirstTestQueue", message.getBytes());
     }
 
     public void sendUserMessage(User user) {
-        rabbitTemplate.convertAndSend("TestQueue", user);
+        rabbitTemplate.convertAndSend("FirstTestQueue", user);
     }
+
+    public void changeUserMessageFromFirstQueue(User user) {
+        user.setNotes(null);
+        rabbitTemplate.convertAndSend("SecondTestQueue", user);
+    }
+
+
 
 }
