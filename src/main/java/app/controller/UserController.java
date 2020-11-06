@@ -1,10 +1,7 @@
 package app.controller;
 
 import app.entity.User;
-import app.repository.UserRepo;
-import app.service.RabbitListener;
 import app.service.UserService;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,7 +30,27 @@ public class UserController {
     }
 
     @PostMapping("/message/user")
-    public void getUser(@RequestBody User user){
+    public void sendUser(@RequestBody User user){
         userService.sendUserMessage(user);
+    }
+
+    @PostMapping("/message/fanout")
+    public void sendUserToFanoutExchange(@RequestBody User user){
+        userService.sendUserMessageToFanoutQueue(user);
+    }
+
+    @PostMapping("/message/direct")
+    public void sendUserToDirectExchange(@RequestBody User user){
+        userService.sendUserMessageToDirectExchange(user);
+    }
+
+    @PostMapping("/message/topic")
+    public void sendUserToTopicExchange(@RequestBody User user){
+        userService.sendUserMessageToTopicExchange(user);
+    }
+
+    @PostMapping("/message/remote")
+    public void sendUserMessageForRemoteProcedureCall(@RequestBody User user){
+        userService.sendUserMessageForRemoteProcedureCall(user);
     }
 }

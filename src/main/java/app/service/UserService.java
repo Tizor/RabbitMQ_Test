@@ -10,4 +10,8 @@ public interface UserService {
     void sendStringMessage(String message);
     void sendUserMessage(User user);
     void changeUserMessageFromFirstQueue(User user);
+    void sendUserMessageToFanoutQueue(User user);
+    void sendUserMessageToDirectExchange(User user);
+    void sendUserMessageToTopicExchange(User user);
+    void sendUserMessageForRemoteProcedureCall(User user);
 }

@@ -5,7 +5,6 @@ import app.repository.UserRepo;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Collection;
 
@@ -30,6 +29,7 @@ public class UserServiceImpl implements UserService {
         rabbitTemplate.convertAndSend("FirstTestQueue", message.getBytes());
     }
 
+    // Обычная очередь
     public void sendUserMessage(User user) {
         rabbitTemplate.convertAndSend("FirstTestQueue", user);
     }
@@ -38,7 +38,23 @@ public class UserServiceImpl implements UserService {
         user.setNotes(null);
         rabbitTemplate.convertAndSend("SecondTestQueue", user);
     }
+    // Очередь по подписке
+    public void sendUserMessageToFanoutQueue(User user) {
+        rabbitTemplate.convertAndSend("FanoutExchange","", user);
+    }
 
+    // Очередь по direct exchange и routing key
+    public void sendUserMessageToDirectExchange(User user) {
+        rabbitTemplate.convertAndSend("ThirdDirectExchange","Third", user);
+    }
 
+    // Очередь по topic exchange и routing key
+    public void sendUserMessageToTopicExchange(User user) {
+        rabbitTemplate.convertAndSend("FourthTopicExchange","third.third.rabbit", user);
+    }
 
+    // Вызов удаленных процедур
+    public void sendUserMessageForRemoteProcedureCall(User user) {
+        rabbitTemplate.convertSendAndReceive("FifthTestQueue", user);
+    }
 }
